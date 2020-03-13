@@ -22,22 +22,27 @@
     <ul :class="$style.Conditions">
       <li :class="['py-4', $style.ConditionsItem]">
         <span>
-          <!-- eslint-disable-next-line prettier/prettier -->
-          <span :class="$style.ConditionsItemLarger">風邪</span>のような症状
+          <i18n path="{cold}のような症状">
+            <span :class="$style.ConditionsItemLarger" place="cold">
+              {{ $t('風邪') }}
+            </span>
+          </i18n>
         </span>
       </li>
       <li :class="['py-4', $style.ConditionsItem]">
-        <!-- eslint-disable-next-line prettier/prettier -->
-        <span>発熱
-          <span
+        <i18n tag="span" path="発熱{temperature}">
+          <i18n
+            tag="span"
+            place="temperature"
+            path="{tempNum}以上"
             :class="[
               $style.ConditionsItemLarger,
               $style.ConditionsItemWithWordBreak
             ]"
           >
-            <span>37.5℃</span>以上
-          </span>
-        </span>
+            <span place="tempNum">{{ $t('37.5℃') }}</span>
+          </i18n>
+        </i18n>
       </li>
       <li :class="['py-3', $style.ConditionsItem, $style.ConditionsItemLarger]">
         {{ $t('強いだるさ') }}
@@ -48,7 +53,16 @@
     </ul>
 
     <p :class="$style.Lasting">
-      <span><strong>2</strong>日程度</span>続いている
+      <i18n path="{duration}続いている">
+        <i18n
+          tag="span"
+          :class="$style.LastingLarger"
+          place="duration"
+          path="{day}日程度"
+        >
+          <strong place="day">2</strong>
+        </i18n>
+      </i18n>
     </p>
 
     <a
@@ -64,103 +78,7 @@
   </div>
 </template>
 
-<i18n>
-{
-  "ja": {
-    "{duration}続いている": "{duration}続いている",
-    "{day}日程度": "{day}日程度",
-    "{cold}のような症状": "{cold}のような症状",
-    "風邪": "風邪",
-    "発熱{temperature}以上": "発熱{temperature}",
-    "{tempNum}以上": "{tempNum}以上",
-    "37.5℃": "37.5℃",
-    "強いだるさ": "強いだるさ",
-    "息苦しさ": "息苦しさ",
-    "ご高齢な方": "ご高齢な方",
-    "基礎疾患のある方": "基礎疾患のある方",
-    "妊娠中の方": "妊娠中の方",
-    "新型コロナ受診相談窓口へ": "新型コロナ受診相談窓口へ"
-  }
-}
-</i18n>
-
-<!--
-"en": {
-    "{duration}続いている": "Having these symptoms for {duration",
-    "{day}日程度": "{day} consecutive days",
-    "{cold}のような症状": "Having {cold} symptoms",
-    "風邪": "cold/flu",
-    "発熱{temperature}以上": "body temperature {temperature}",
-    "{tempNum}以上": "above {tempNum}",
-    "37.5℃": "37.5℃",
-    "強いだるさ": "Extreme fatigue",
-    "息苦しさ": "Having difficulty when breathing",
-    "ご高齢な方": "The elderly",
-    "基礎疾患のある方": "People with chronic illnesses",
-    "妊娠中の方": "Pregnant women",
-    "新型コロナ受診相談窓口へ": ""
-  },
-  "zh-cn": {
-    "{duration}続いている": "症状持续{duration}",
-    "{day}日程度": "约{day}天",
-    "{cold}のような症状": "有疑似{cold}的症状",
-    "風邪": "感冒",
-    "発熱{temperature}以上": "发烧 {temperature}",
-    "{tempNum}以上": "{tempNum} 以上",
-    "37.5℃": "37.5℃",
-    "強いだるさ": "有强烈倦怠感",
-    "息苦しさ": "感到呼吸困难",
-    "ご高齢な方": "老年人",
-    "基礎疾患のある方": "患有基础疾病的人",
-    "妊娠中の方": "孕妇",
-    "新型コロナ受診相談窓口へ": ""
-  },
-  "zh-tw": {
-    "{duration}続いている": "症狀持續{duration}",
-    "{day}日程度": "約{day}天",
-    "{cold}のような症状": "疑似{cold}症狀",
-    "風邪": "感冒",
-    "発熱{temperature}以上": "發燒 {temperature}",
-    "{tempNum}以上": "{tempNum} 以上",
-    "37.5℃": "37.5℃",
-    "強いだるさ": "有強烈疲倦感",
-    "息苦しさ": "呼吸不順暢",
-    "ご高齢な方": "老年人",
-    "基礎疾患のある方": "具有潛在疾病者",
-    "妊娠中の方": "孕婦",
-    "新型コロナ受診相談窓口へ": ""
-  },
-  "ko": {
-    "{duration}続いている": "이러한 증상이 {duration} 지속될 경우",
-    "{day}日程度": "{day}일 동안",
-    "{cold}のような症状": "{cold} 비슷한 증상",
-    "風邪": "감기와",
-    "発熱{temperature}以上": "{temperature} 발열",
-    "{tempNum}以上": "{tempNum} 이상의",
-    "37.5℃": "37.5도",
-    "強いだるさ": "극도의 피로감",
-    "息苦しさ": "호흡이 어려운 경우",
-    "ご高齢な方": "노인",
-    "基礎疾患のある方": "기저질환이 있는 사람",
-    "妊娠中の方": "임산부",
-    "新型コロナ受診相談窓口へ": ""
-  },
-  "ja-basic": {
-    "{duration}続いている": "{duration} つづいている",
-    "{day}日程度": "{day}にち くらい",
-    "{cold}のような症状": "{cold} が あるひと",
-    "風邪": "かぜ",
-    "発熱{temperature}以上": "{temperature} たかいねつが あるひと",
-    "{tempNum}以上": "{tempNum}より",
-    "37.5℃": "37.5℃",
-    "強いだるさ": "からだがくるしい",
-    "息苦しさ": "いきがくるしい",
-    "ご高齢な方": "おじいさん おばあさん",
-    "基礎疾患のある方": "ふだんから びょうきが あるひと",
-    "妊娠中の方": "おなかに こどもが いるひと",
-    "新型コロナ受診相談窓口へ": ""
-  }
--->
+<i18n src="./FlowSpElder.i18n.json"></i18n>
 
 <script lang="ts">
 import AccessibleIcon from '@/static/flow/accessible-24px.svg'
@@ -271,7 +189,7 @@ export default {
   }
   color: $gray-2;
   font-weight: bold;
-  span {
+  &Larger {
     border-bottom: 4px solid $green-1;
     @include lessThan($small) {
       @include font-size(18);
